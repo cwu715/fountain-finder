@@ -2,7 +2,7 @@
 <html lang="en-US">
 
 <head>
-  <title>Water Finder</title>
+  <title>Fountain Finder</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -54,6 +54,25 @@ for (i = 0; i < mydata.length; i++){
 });
 
 
+  map.locate({setView: true, maxZoom: 16});
+
+  function onLocationFound(e) {
+      var radius = e.accuracy / 2;
+
+      L.marker(e.latlng).addTo(map)
+          .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+      L.circle(e.latlng, radius).addTo(map);
+  }
+
+  map.on('locationfound', onLocationFound);
+
+  function onLocationError(e) {
+      alert(e.message);
+  }
+
+  map.on('locationerror', onLocationError);
+
 
   </script>
 
@@ -74,7 +93,7 @@ for (i = 0; i < mydata.length; i++){
            <ul class="nav navbar-nav navbar-right">
              <li class="hvr-pulse hvr-underline-from-center"><a href="#">about us</a></li>
              <li class="hvr-pulse hvr-underline-from-center"><a href="#">donate</a></li>
-             <li class="hvr-pulse hvr-underline-from-center"><a href="#">why should you care?</a></li>
+             <li class="hvr-pulse hvr-underline-from-center"><a href="/why.html">why should you care?</a></li>
              <li class="act hvr-underline-from-center"><a href="#">find a fountain</a></li>
            </ul>
          </div>
