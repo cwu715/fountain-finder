@@ -17,7 +17,6 @@
   <link href="https://fonts.googleapis.com/css?family=Lato|Archivo" rel="stylesheet">
   <link href="hover.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="stylefountain.css">
-  <script href="scriptfountain.js"></script>
 
 
 </head>
@@ -39,55 +38,49 @@
   		id: 'mapbox.streets'
   	}).addTo(mymap);
 
-    $.getJSON("coordinates.geojson", function(data){
-        mydata = data;
-        console.log(mydata)
 
-  for (i = 0; i < mydata.length; i++){
-      var properties = mydata[i].properties;
-      var lon = properties.longitude;
-      var lat = properties.latitude;
-      var add = properties.add;
-      L.marker([lat, lon]).addTo(mymap);
-    };
+    $.getJSON("fountainpoint.geojson", function(data){
+      mydata = data;
+      console.log(mydata)
 
-  });
+for (i = 0; i < mydata.length; i++){
+    var properties = mydata[i].properties;
+    var lon = properties.Longitude;
+    var lat = properties.Latitude;
+    var address = properties.Addresses;
+  	L.marker([lat, lon]).bindPopup(String(address)).addTo(mymap);
+  };
+
+});
+
+
 
   </script>
 
-
   <div class="example3">
-    <nav class="navbar navbar-default  navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-         <img src="logo1.png" alt="Fountain Finder">
+     <nav class="navbar navbar-default  navbar-fixed-top">
+       <div class="container">
+         <div class="navbar-header">
+           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+           </button>
+          <img src="logo1.png" alt="Fountain Finder">
 
-        </div>
-        <div id="myNavbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="hvr-pulse hvr-underline-from-center"><a href="#">about us</a></li>
-            <li class="hvr-pulse hvr-underline-from-center"><a href="#">donate</a></li>
-            <li class="hvr-pulse hvr-underline-from-center"><a href="#">why should you care?</a></li>
-            <li class="act hvr-underline-from-center"><a href="#">find a fountain</a></li>
-          </ul>
-        </div>
-        <!--/.nav-collapse -->
-      </div>
-      <!--/.container-fluid -->
-    </nav>
-  </div>
-
-
-
-
-  <div id="mapid"></div>
-
-</body>
-
+         </div>
+         <div id="myNavbar" class="navbar-collapse collapse">
+           <ul class="nav navbar-nav navbar-right">
+             <li class="hvr-pulse hvr-underline-from-center"><a href="#">about us</a></li>
+             <li class="hvr-pulse hvr-underline-from-center"><a href="#">donate</a></li>
+             <li class="hvr-pulse hvr-underline-from-center"><a href="#">why should you care?</a></li>
+             <li class="act hvr-underline-from-center"><a href="#">find a fountain</a></li>
+           </ul>
+         </div>
+         <!--/.nav-collapse -->
+       </div>
+       <!--/.container-fluid -->
+     </nav>
+   </div>
 </html>
