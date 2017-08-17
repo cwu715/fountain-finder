@@ -1,0 +1,114 @@
+
+
+.navbar-brand {
+  padding: 0px;
+    background-color: #46B3E8;
+
+
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 15px;
+  width: auto;
+  padding: 2px 10px;
+
+
+
+}
+
+
+.example3 {
+    background-color: #46B3E8;
+}
+.navbar {
+  background-color: #46B3E8;
+  border-bottom: 10px white solid;
+}
+.example3 .navbar-header {
+  background-color: #46B3E8;
+}
+
+.example3 .navbar-brand {
+  height: 100px;
+  background-color: #46B3E8;
+}
+
+.example3 .nav >li {
+  font-family: Archivo;
+  margin-top: 35px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  margin-right: 6px;
+  font-size: 15px;
+  padding-left: 5px;
+  padding-right: 6px;
+}
+
+
+.example3 .nav >li >a {
+  font-family: Archivo;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 5px 5px;
+  text-decoration: none;
+  border-radius: 5px;
+
+
+}
+
+
+.example3 .nav >li:hover {
+  background-color: white;
+  color: black;
+  border-radius: 3px;
+
+}
+
+
+
+.example3 .navbar-toggle {
+  padding: 10px;
+  margin: 25px 15px 25px 0;
+}
+
+
+.slideshow {
+   z-index: 900;
+   margin-top: 110px;
+   margin-bottom: 10px;
+   left: 0;
+   right: 0;
+   width: 100%;
+   height:auto;
+}
+
+.act {
+  border-bottom: 2px solid white;
+}
+
+/* ********************************************************** */
+/* BODY SECTION */
+
+#cycler {
+  position:relative;
+}
+
+#cycler img{
+  position:absolute;
+  z-index:1
+}
+
+#cycler img.active{
+  z-index:3
+}
+
+#footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:10px;
+   width:100%;
+   background: white;
+   z-index: 150;
+}
