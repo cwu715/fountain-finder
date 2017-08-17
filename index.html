@@ -2,7 +2,7 @@
 <html lang="en-US">
 
 <head>
-  <title>Fountain Finder (Test)</title>
+  <title>Fountain Finder</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -54,24 +54,6 @@ for (i = 0; i < mydata.length; i++){
 });
 
 
-  map.locate({setView: true, maxZoom: 16});
-
-  function onLocationFound(e) {
-      var radius = e.accuracy / 2;
-
-      L.marker(e.latlng).addTo(map)
-          .bindPopup("You are within " + radius + " meters from this point").openPopup();
-
-      L.circle(e.latlng, radius).addTo(map);
-  }
-
-  map.on('locationfound', onLocationFound);
-
-  function onLocationError(e) {
-      alert(e.message);
-  }
-
-  map.on('locationerror', onLocationError);
 
 
   </script>
