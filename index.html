@@ -6,17 +6,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" >
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css">
+  <link rel="stylesheet" href="leaflet.zoomhome.css"/>
+
    integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
    crossorigin=""/>
+
    <link href="https://fonts.googleapis.com/css?family=Lato|Archivo" rel="stylesheet">
    <link href="hover.css" rel="stylesheet">
    <link rel="stylesheet" type="text/css" href="stylefountain.css">
+
+
    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
   integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
   crossorigin=""></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="leaflet.zoomhome.min.js"></script>
   <script language="javascript"> </script>
 
 
@@ -42,17 +49,19 @@ var mymap;
 function init() {
   mymap = new L.Map('mymap');
   mymap.setView([40.731094, -73.99057], 13);
-  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2gtYWxpbmEiLCJhIjoiY2o2ODgyM2xiMGVxdzJxbjZoazZ5ejluMyJ9.hk2ve995u1d6kbj64CbmOQ',{
-  attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-    '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-    'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-  id: 'mapbox.streets',
-  maxZoom: 18,
-  }).addTo(mymap);
-  mymap.attributionControl.setPrefix('');
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',{
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+          '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+          'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+          id: 'mapbox.streets',
+          maxZoom: 18,
+          zoomControl: false,
+          //mymap.attributionControl.setPrefix(''); //hides the "Leaflet" at the bottom
+});
 };
 
 
+// get geoJSON file info
 $.getJSON("fountainpoint.geojson", function(data){
   mydata = data;
   console.log(mydata)
@@ -67,6 +76,12 @@ for (i = 0; i < mydata.length; i++){
 
 });
 
+// add the new control to the map
+var zoomHome = new L.Control.zoomHome();
+zoomHome.addTo(mymap);
+
+
+// add location to the map
 function onLocationFound(e) {
         var radius = e.accuracy / 2;
         var location = e.latlng
@@ -82,7 +97,7 @@ function onLocationFound(e) {
         mymap.on('locationfound', onLocationFound);
         mymap.on('locationerror', onLocationError);
 
-        mymap.locate({setView: true, maxZoom: 16});
+        mymap.locate({setView: true, maxZoom: 25});
      }
 
 
